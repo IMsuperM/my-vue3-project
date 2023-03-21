@@ -1,8 +1,8 @@
 // request.js
-
+let loadingCount = 0; // 全局loading 计数
 // 默认配置，和luch-request基本一致
 const DEFAULT_CONFIG = {
-    baseURL: "http://yapi.com.cn/api/",
+    baseURL: "http://10.118.13.184:3030",
     header: {},
     method: "POST",
     dataType: "json",
@@ -36,7 +36,7 @@ const DEFAULT_CONFIG = {
     //   // statusCode 必存在。此处示例为全局默认配置
     //   return statusCode >= 200 && statusCode < 300;
     // },
-  };
+};
 
 class Request {
     constructor(options = {}) {
@@ -45,9 +45,9 @@ class Request {
     }
     // 请求拦截 主要是合并url，合并接口特定配置，可以根据自己情况进行扩展
     requestInterceptor (url, data, config, method) {
-        const { baseUrl } = this.config;
+        const { baseURL } = this.config;
         // 拼接Url
-        url = baseUrl + url;
+        url = baseURL + url;
         const configs = {
             ...this.config,
             url,
@@ -55,6 +55,7 @@ class Request {
             ...config,
             method,
         };
+        console.log("Request ~ requestInterceptor ~ configs:", configs);
         // 返回组装的配置
         return configs;
     }
@@ -66,7 +67,7 @@ class Request {
             this.handleError(message);
             return Promise.reject(message);
         }
-        return data;
+        return Promise.resolve({ code, message, data });
     }
     // 请求方法，做了Promise封装，返回Promise
     /**
@@ -78,7 +79,7 @@ class Request {
      */
     request (url, data, config, method) {
         // 显示loading
-        uni.showLoading();
+        this.showLoading();
         // 请求拦截，返回处理过的结果配置
         const _config = this.requestInterceptor(url, data, config, method);
         // Promise 封装
@@ -96,7 +97,7 @@ class Request {
                 },
                 complete: () => {
                     // 关闭Loading
-                    uni.hideLoading();
+                    this.hideLoading();
                 },
             });
         });
@@ -130,6 +131,19 @@ class Request {
             title,
             icon: "none",
         });
+    }
+
+    showLoading () {
+        uni.showLoading({ mask: true, title: 'loading...' })
+        loadingCount++;
+    }
+
+    hideLoading () {
+        loadingCount !== 0 && loadingCount--;
+        if (loadingCount === 0) {
+            // console.log("Request ~ hideLoading ~ loadingCount: 关闭了", loadingCount);
+            uni.hideLoading()//关闭loading效果
+        }
     }
 }
 

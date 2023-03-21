@@ -6,11 +6,13 @@
       <text class="title">{{ title }}</text>
 
       <button @click="jumpTo">跳转</button>
+      <button @click="request">请求</button>
     </view>
   </view>
 </template>
 
 <script setup>
+import api from "/src/api/index"
 import { ref, onMounted, reactive } from 'vue'
 let { title1 } = reactive({ title1: 'hello world' })
 title1 += '12345'
@@ -24,6 +26,18 @@ const jumpTo = () => {
   uni.navigateTo({
     url: '/pages/test/index?id=1&name=uniapp'
   })
+}
+function request () {
+//   for (let index = 0; index < 5; index++) {
+//     let res =  api.test()
+//     console.log("request ~ res:", res);
+//   }
+    let res =  api.test()
+    console.log("request ~ res:", res);
+    let res1 =  api.test1()
+    console.log("request ~ res:", res1);
+    let res2 =  api.test2()
+    console.log("request ~ res:", res2);
 }
 // export default {
 //     setup () {

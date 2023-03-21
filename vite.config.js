@@ -2,7 +2,8 @@ import { defineConfig } from 'vite'
 import uni from '@dcloudio/vite-plugin-uni'
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    uni(),
-  ],
+    base: '/uni/', // 基础路径
+    plugins: [
+        uni(),
+    ],
 })

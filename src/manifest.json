@@ -72,6 +72,7 @@
         "enable": false
     },
     "vueVersion" : "3",
+     /* h5相关 history */
     "h5" : {
         "router" : {
             "mode" : "history"
