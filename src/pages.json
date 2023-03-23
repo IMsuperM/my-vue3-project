@@ -13,6 +13,26 @@
 			}
 		}
 	],
+	// 分包
+	"subPackages": [
+		{
+			"root": "subPackagePage/",
+			"pages": [
+				{
+					"path": "packagePage/index",
+					"style": {
+						"navigationBarTitleText": "test"
+					}
+				},
+                {
+					"path": "packagePage/packageTest",
+					"style": {
+						"navigationBarTitleText": "packageTest"
+					}
+				}
+			]
+		}
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		// "navigationBarTitleText": "uni-app",

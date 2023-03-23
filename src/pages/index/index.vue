@@ -4,16 +4,18 @@
     <view class="text-area">
       <text class="title">{{ title1 }}</text>
       <text class="title">{{ title }}</text>
-
+    </view>
+    <view>
       <button @click="jumpTo">跳转</button>
+      <button @click="jumpToPackagePage">跳转分包页面</button>
       <button @click="request">请求</button>
     </view>
   </view>
 </template>
 
 <script setup>
-import api from "/src/api/index"
-import { ref, onMounted, reactive } from 'vue'
+import api from "../../api/index"
+import { ref, reactive, onMounted } from 'vue'
 let { title1 } = reactive({ title1: 'hello world' })
 title1 += '12345'
 const title = ref('hello')
@@ -27,17 +29,22 @@ const jumpTo = () => {
     url: '/pages/test/index?id=1&name=uniapp'
   })
 }
+const jumpToPackagePage = () => { 
+    uni.navigateTo({
+    url: '/subPackagePage/packagePage/packageTest?id=1&name=uniapp'
+  })
+}
 function request () {
-//   for (let index = 0; index < 5; index++) {
-//     let res =  api.test()
-//     console.log("request ~ res:", res);
-//   }
-    let res =  api.test()
-    console.log("request ~ res:", res);
-    let res1 =  api.test1()
-    console.log("request ~ res:", res1);
-    let res2 =  api.test2()
-    console.log("request ~ res:", res2);
+  //   for (let index = 0; index < 5; index++) {
+  //     let res =  api.test()
+  //     console.log("request ~ res:", res);
+  //   }
+  let res = api.test()
+  console.log("request ~ res:", res);
+  let res1 = api.test1()
+  console.log("request ~ res:", res1);
+  let res2 = api.test2()
+  console.log("request ~ res:", res2);
 }
 // export default {
 //     setup () {
