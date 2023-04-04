@@ -1,42 +1,57 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{
-			"path": "pages/index/index",
-			"style": {
-				// "navigationBarTitleText": "uni-app"
-			}
-		},
-		{
-			"path": "pages/test/index",
-			"style": {
-				"navigationBarTitleText": "test"
-			}
-		}
-	],
-	// 分包
-	"subPackages": [
-		{
-			"root": "subPackagePage/",
-			"pages": [
-				{
-					"path": "packagePage/index",
-					"style": {
-						"navigationBarTitleText": "test"
-					}
-				},
+    "pages": [
+        //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+        {
+            "path": "pages/index/index",
+            "style": {
+                "navigationBarTitleText": "index",
+                // 小程序  自定义头部导航栏(单个页面配置)
+                "navigationStyle": "custom",
+                // App、H5
+                "app-plus": {
+                    "titleNView": false //禁用原生导航栏
+                }
+            }
+        },
+        {
+            "path": "pages/test/index",
+            "style": {
+                "navigationBarTitleText": "test"
+            }
+        }
+    ],
+    // 分包
+    "subPackages": [
+        {
+            "root": "subPackagePage/",
+            "pages": [
                 {
-					"path": "packagePage/packageTest",
-					"style": {
-						"navigationBarTitleText": "packageTest"
-					}
-				}
-			]
-		}
-	],
-	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		// "navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
-	}
+                    "path": "packagePage/index",
+                    "style": {
+                        "navigationBarTitleText": "test"
+                    }
+                },
+                {
+                    "path": "packagePage/packageTest",
+                    "style": {
+                        "navigationBarTitleText": "packageTest"
+                    }
+                }
+            ]
+        }
+    ],
+    "globalStyle": {
+        // #region 全局禁用的话
+        // //小程序  自定义头部导航栏
+        // "navigationStyle": "custom",
+        // //App、H5
+        // "app-plus": {
+        // 	"titleNView": false //禁用原生导航栏
+        // },
+        // #endregion
+        "navigationBarTextStyle": "black",
+        // "navigationBarTitleText": "uni-app",
+        "navigationBarBackgroundColor": "#F8F8F8",
+        "backgroundColor": "#F8F8F8"
+    }
 }

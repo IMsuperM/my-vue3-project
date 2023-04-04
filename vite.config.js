@@ -1,15 +1,8 @@
 import { defineConfig } from 'vite'
 import viteCompression from 'vite-plugin-compression'
-import commonjs from "@rollup/plugin-commonjs";
-import externalGlobals from "rollup-plugin-external-globals";
 import { resolve } from 'path'
 import uni from '@dcloudio/vite-plugin-uni'
 import { visualizer } from 'rollup-plugin-visualizer';
-
-const globals = externalGlobals({
-    vue: "Vue",
-    'vue-router': 'VueRouter',
-})
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -35,23 +28,32 @@ export default defineConfig({
     },
     build: {
         rollupOptions: {
-            // 忽略打包
-            external: ['vue','vue-router'],
+            // 忽略打包（使用了cdn资源）
+            external: ['vue', 'vue-router'],
             plugins: [
+                // 开启打包分析 
                 visualizer({
                     open: true,  //注意这里要设置为true，否则无效
                     gzipSize: true,
                     brotliSize: true
-                }),  // 打包分析
-                globals, commonjs(),
+                }),
             ],
-            // output: {
-            //     // 拆包
-            //     manualChunks: {
-            //         'vue': ['Vue'],
-            //         'vue-router': ['VueRouter'],
-            //     }
-            // }
+            output: {
+                // // 拆包
+                // manualChunks: {
+                //     index: ['src/common/request.js'],
+                //     // vue vue-router合并打包
+                //     vue: ['vue', 'vue-router'],
+                //     echarts: ['echarts'],
+                //     lodash: ['lodash'],
+                // }
+                // 最小化拆分包
+                manualChunks: (id) => {
+                    if (id.includes('node_modules')) {
+                        return id.toString().split('node_modules/')[1].split('/')[0].toString();
+                    }
+                },
+            }
         }
     }
 })
