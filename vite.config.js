@@ -3,10 +3,9 @@ import viteCompression from 'vite-plugin-compression'
 import { resolve } from 'path'
 import uni from '@dcloudio/vite-plugin-uni'
 import { visualizer } from 'rollup-plugin-visualizer';
-
 // https://vitejs.dev/config/
 export default defineConfig({
-    base: '/uni/', // 基础路径
+    base: '/uni/', // 基础路径，与服务器配置的路由对应
     plugins: [
         uni(),
         viteCompression(), // gzip 压缩
@@ -26,6 +25,16 @@ export default defineConfig({
             }
         }
     },
+    // 请求代理
+    server: {
+        proxy: {
+          "/api": {
+            target: "http://10.118.13.184:3030/",
+            changeOrigin: true,
+            rewrite: (path) => path.replace(/^\/api/, ""),
+          },
+        },
+      },
     build: {
         rollupOptions: {
             // 忽略打包（使用了cdn资源）

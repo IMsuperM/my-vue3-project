@@ -54,12 +54,14 @@
 		"setting": {
 			"urlCheck": false,
 			"es6": true,
-			"minified": true,
+			"minified": true, /* 上传代码时是否自动压缩 */
 			"postcss": true
 		},
 		"usingComponents": true,
         /* 进行分包 */
-		"optimization": { "subPackages": true }
+		"optimization": { "subPackages": true },
+        /* 组件按需引入 */
+        "lazyCodeLoading": "requiredComponents"
 	},
 	"mp-alipay": {
 		"usingComponents": true

@@ -34,17 +34,17 @@ const jumpToPackagePage = () => {
     url: '/subPackagePage/packagePage/packageTest?id=1&name=uniapp'
   })
 }
-function request () {
+async function request () {
   //   for (let index = 0; index < 5; index++) {
   //     let res =  api.test()
   //     console.log("request ~ res:", res);
   //   }
-  let res = api.test()
-  console.log("request ~ res:", res);
-  let res1 = api.test1()
-  console.log("request ~ res:", res1);
-  let res2 = api.test2()
-  console.log("request ~ res:", res2);
+  let res = await api.test()
+  console.log("request1 ~ res:", res);
+  let res1 = await api.test1()
+  console.log("request2 ~ res:", res1);
+  let res2 = await api.test2()
+  console.log("request3 ~ res:", res2);
 }
 // export default {
 //     setup () {
