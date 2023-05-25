@@ -7,7 +7,7 @@ export default {
   name: "test",
   components: {},
   props: {},
-  data() {
+  data () {
     return {}
   },
   computed: {},
@@ -15,15 +15,15 @@ export default {
   watch: {},
 
   // 页面周期函数--监听页面加载
-  onLoad() {},
+  onLoad () { },
   // 页面周期函数--监听页面初次渲染完成
-  onReady() {},
+  onReady () { },
   // 页面周期函数--监听页面显示(not-nvue)
-  onShow() {},
+  onShow () { },
   // 页面周期函数--监听页面隐藏
-  onHide() {},
+  onHide () { },
   // 页面周期函数--监听页面卸载
-  onUnload() {},
+  onUnload () { },
   // 页面处理函数--监听用户下拉动作
   // onPullDownRefresh() { uni.stopPullDownRefresh(); },
   // 页面处理函数--监听用户上拉触底

@@ -38,7 +38,7 @@ export default defineConfig({
     build: {
         rollupOptions: {
             // 忽略打包（使用了cdn资源）
-            external: ['vue', 'vue-router'],
+            // external: ['vue', 'vue-router'],
             plugins: [
                 // 开启打包分析 
                 visualizer({
