@@ -10,7 +10,9 @@ const test1 = (param) => {
 const test2 = (param) => {
     return http.get('/index/test2',param)
 }
-
+const tt = (param) => {
+    return http.get('/users/test',param)
+}
 export default {
-    test , test1, test2 
+    test , test1, test2, tt 
 }

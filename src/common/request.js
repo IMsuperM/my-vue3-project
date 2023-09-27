@@ -1,12 +1,13 @@
 // request.js
 let loadingCount = 0; // 全局loading 计数
+import { baseURL } from '@/common/constant.js'
 // 默认配置，和luch-request基本一致
 const DEFAULT_CONFIG = {
     // #ifdef H5
     baseURL: "/api", // 使用了代理
     // #endif
     // #ifdef mp-weixin
-    baseURL: "http://10.118.13.184:3030",
+    baseURL: baseURL,
     // #endif
     header: {},
     method: "POST",

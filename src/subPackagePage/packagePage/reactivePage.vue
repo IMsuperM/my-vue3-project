@@ -1,6 +1,6 @@
 <template>
     <view class="content">
-        <!-- <image class="logo" src="/static/logo.png"></image> -->
+        <view :class="classObject">{{classObject}}</view>
         <view class="text-area">
             <text class="title">num:{{ num }}</text>
         </view>
@@ -23,8 +23,7 @@
 </template>
 
 <script setup>
-import api from "../../api/index"
-import { nextTick, ref, reactive, onMounted, onUpdated } from 'vue'
+import { computed, ref, reactive, onMounted, onUpdated } from 'vue'
 import * as THREE from 'three';
 
 // 使用three.JS 
@@ -64,7 +63,14 @@ function three (params) {
     }
     animate();
 }
+const isActive = ref(true)
+const error = ref(null)
 
+const classObject = computed(() => ({
+  active: isActive.value && !error.value,
+  'text-danger': error.value && error.value.type === 'fatal'
+}))
+console.log("classObject ~ classObject:", classObject);
 //#region 响应式
 
 // 响应式效果，双向绑定

@@ -60,6 +60,7 @@
     "@dcloudio/uni-stacktracey": "3.0.0-3070320230222002",
     "@dcloudio/vite-plugin-uni": "3.0.0-3070320230222002",
     "vite": "4.0.3",
-    "vite-plugin-compression": "^0.5.1"
+    "vite-plugin-compression": "^0.5.1",
+    "vite-plugin-mkcert": "^1.16.0"
   }
 }

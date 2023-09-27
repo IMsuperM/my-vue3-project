@@ -47,6 +47,11 @@ async function request () {
     console.log("request2 ~ res:", res1);
     let res2 = await api.test2()
     console.log("request3 ~ res:", res2);
+    let tt = await api.tt({
+	"name": "IKun",
+	"password": "123"
+})
+    console.log("request3 ~ res:", tt);
 }
 
 </script>

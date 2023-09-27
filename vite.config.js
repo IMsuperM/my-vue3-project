@@ -3,12 +3,16 @@ import viteCompression from 'vite-plugin-compression'
 import { resolve } from 'path'
 import uni from '@dcloudio/vite-plugin-uni'
 import { visualizer } from 'rollup-plugin-visualizer';
+import mkcert from "vite-plugin-mkcert";
+import { baseURL } from './src/common/constant.js'
+
 // https://vitejs.dev/config/
 export default defineConfig({
     base: '/uni/', // 基础路径，与服务器配置的路由对应
     plugins: [
         uni(),
         viteCompression(), // gzip 压缩
+        mkcert(), // 开启https服务
     ],
     resolve: {
         // 配置别名
@@ -27,14 +31,16 @@ export default defineConfig({
     },
     // 请求代理
     server: {
+        https: true,   // 需要开启https服务
         proxy: {
-          "/api": {
-            target: "http://10.118.13.184:3030/",
-            changeOrigin: true,
-            rewrite: (path) => path.replace(/^\/api/, ""),
-          },
+            '/api': {
+                target: baseURL,  // 本地的https node服务
+                secure: false, // 代理https的 需要加此配置
+                changeOrigin: true,
+                rewrite: (path) => path.replace(/^\/api/, ''),
+            },
         },
-      },
+    },
     build: {
         rollupOptions: {
             // 忽略打包（使用了cdn资源）
